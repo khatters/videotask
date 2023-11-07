@@ -52,23 +52,28 @@ window.addEventListener("load", function() {
 	console.log("Current Location:"+ video.currentTime)
  });
 
- document.querySelector("#slider").addEventListener("click", function(){
-	var video = document.querySelector("#player1");
-	video.volume = this.value / 100
-	updateVolumeInfo();
+ document.querySelector("#slider").addEventListener("input", function() {
+    var video = document.querySelector("#player1");
+    video.volume = this.value / 100;
+    updateVolumeInfo(); 
+});
 
-	});
+function updateVolumeInfo() {
+    var video = document.querySelector("#player1");
+    var volumeSlider = document.querySelector("#slider");
+    document.querySelector('#volume').textContent = Math.round(video.volume * 100) + "%";
+    volumeSlider.value = video.volume * 100;
+};
 
-function updateVolumeInfo(){
-	document.querySelector('#volume').textContent = Math.round(video.volume * 100) + "%";
-
-}
 
 document.querySelector('#vintage').addEventListener("click", function(){
+	var video = document.querySelector("#player1");
 	video.classList.add("oldSchool");
+	
 });
 
 document.querySelector("#orig").addEventListener("click", function() {
+	var video = document.querySelector("#player1");
 	video.classList.remove("oldSchool")
 });
 
